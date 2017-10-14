@@ -3,4 +3,8 @@
   <p><%= link_to post.title, post%></p>
   <p><%= post.link%></p>
   <p><%= post.description%></p>
+  <hr>
 <%end%>
+
+
+<%= link_to "New Post", new_post_path(@post) %>
