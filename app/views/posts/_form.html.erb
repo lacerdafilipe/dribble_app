@@ -1,5 +1,10 @@
 <%= form_for @post do |f|%>
   <p>
+    <%=f.label :image%>
+    <%=f.file_field :image%>
+  </p>
+
+  <p>
     <%= f.label :title%>
     <%= f.text_field :title%>
   </p>

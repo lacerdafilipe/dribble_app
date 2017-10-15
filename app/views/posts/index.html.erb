@@ -1,9 +1,10 @@
 <h1>All posts</h1>
 <% @post.each do |post| %>
+  <p><%= link_to (image_tag post.image.url(:thumb)), post %></p>
   <p><%= link_to post.title, post%></p>
   <p><%= post.link%></p>
   <p><%= post.description%></p>
-  <p>Created by <%= post.user.name%> | <%= post.created_at.strftime("%A, %b, %d")%></p>
+  <p>By <%= post.user.name%> | <%= post.created_at.strftime("%B %d, %Y")%></p>
 
   <hr>
 <%end%>
