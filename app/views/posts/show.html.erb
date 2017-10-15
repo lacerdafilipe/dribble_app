@@ -2,8 +2,12 @@
 <p><%= @post.title %></p>
 <p><%= @post.link %></p>
 <p><%= @post.description %></p>
-<p><%= link_to "Delete", @post, method: :delete,
-                          :data => {confirm: "Are you sure?"}%>
-    | <%= link_to "Back", root_path %>
-    | <%= link_to "Edit", edit_post_path(@post)%>
-</p>
+<p><%= @post.user.name%></p>
+
+<% if user_signed_in? %>
+  <p><%= link_to "Delete", @post, method: :delete,
+                            :data => {confirm: "Are you sure?"}%>
+      | <%= link_to "Back", root_path %>
+      | <%= link_to "Edit", edit_post_path(@post)%>
+  </p>
+<%end%>

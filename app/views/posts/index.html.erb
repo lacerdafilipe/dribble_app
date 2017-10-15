@@ -3,6 +3,8 @@
   <p><%= link_to post.title, post%></p>
   <p><%= post.link%></p>
   <p><%= post.description%></p>
+  <p>Created by <%= post.user.name%> | <%= post.created_at.strftime("%A, %b, %d")%></p>
+
   <hr>
 <%end%>
 
