@@ -4,6 +4,10 @@
   <p><%= link_to post.title, post%></p>
   <p>By <%= post.user.name%> | <%= post.created_at.strftime("%B %d, %Y")%></p>
   <strong><p><%= post.coments.count%> Comments</p></strong>
+  <p>
+    <%= post.get_upvotes.size%> Likes |
+    <%= post.get_downvotes.size%> Dislikes
+  </p>
   <hr>
 <%end%>
 
