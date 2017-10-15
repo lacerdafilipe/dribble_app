@@ -2,10 +2,8 @@
 <% @post.each do |post| %>
   <p><%= link_to (image_tag post.image.url(:thumb)), post %></p>
   <p><%= link_to post.title, post%></p>
-  <p><%= post.link%></p>
-  <p><%= post.description%></p>
   <p>By <%= post.user.name%> | <%= post.created_at.strftime("%B %d, %Y")%></p>
-
+  <strong><p><%= post.coments.count%> Comments</p></strong>
   <hr>
 <%end%>
 
