@@ -3,7 +3,16 @@
 <p><%= @post.title %></p>
 <p><%= @post.link %></p>
 <p><%= @post.description %></p>
-<p><%= @post.user.name%></p>
+<strong><p>by <%= @post.user.name%></p></strong>
+
+
+<h2><%=coment_count = pluralize(@post.coments.count, "Comments")%></h2>
+  <%@coments.each do |coment|%>
+    <strong><p><%= coment.user.name%>:</p></strong>
+    <p><%= coment.content%></p>
+  <%end%>
+
+  <%= render 'coments/form' %>
 
 <% if user_signed_in? %>
   <p><%= link_to "Delete", @post, method: :delete,
