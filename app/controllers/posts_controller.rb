@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  before_action :find_post, only: [:destroy, :show, :edit, :update, :upvote, :downvote]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @post = Post.all.order("created_at ASC")
+
   end
 
   def new
@@ -38,7 +39,6 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-
     redirect_to root_path
   end
 

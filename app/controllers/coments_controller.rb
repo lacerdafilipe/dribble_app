@@ -1,8 +1,8 @@
 class ComentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_post, only: [:create]
 
   def create
+    @post = Post.find(params[:post_id])
     @coment = Coment.create(params[:coment].permit(:content))
     @coment.user_id = current_user.id
     @coment.post_id = @post.id
@@ -14,8 +14,4 @@ class ComentsController < ApplicationController
     end
   end
 
-  private
-    def find_post
-      @post = Post.find(params[:post_id])
-    end
 end
