@@ -7,3 +7,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :coment
 end
+
+def admin?
+  self.roles.include?(:admin)
+end

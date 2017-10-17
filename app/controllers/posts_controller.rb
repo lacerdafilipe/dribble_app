@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   before_action :find_post, only: [:destroy, :show, :edit, :update, :upvote, :downvote]
   before_action :authenticate_user!, except: [:index, :show]
+
 
   def index
     @post = Post.all.order("created_at ASC")
@@ -13,11 +15,12 @@ class PostsController < ApplicationController
 
   def show
     @coments = Coment.where(post_id: @post)
+    authorize! :read, @post
   end
 
   def create
     @post = current_user.posts.build(post_params)
-
+    @post.user_id = current_user.id
     if @post.save
       redirect_to @post
     else
