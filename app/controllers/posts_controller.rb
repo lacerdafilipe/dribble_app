@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource :only => [:upvote, :downvote]
   before_action :find_post, only: [:destroy, :show, :edit, :update, :upvote, :downvote]
   before_action :authenticate_user!, except: [:index, :show]
 
@@ -15,7 +16,6 @@ class PostsController < ApplicationController
 
   def show
     @coments = Coment.where(post_id: @post)
-    authorize! :read, @post
   end
 
   def create

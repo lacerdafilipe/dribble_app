@@ -8,7 +8,7 @@
         <div class="title">
           <h2><%= link_to post.title, post%></h2>
         <div class="data clearfix">
-          <p class="username">Shared by<%= post.user.name%></p>
+          <p class="username">Shared by <strong><%= post.user.name%></strong></p>
           <p class="buttons">
             <span class="fa fa-thumbs-o-up"> <%= post.get_upvotes.size%></span>
             <span class="fa fa-thumbs-o-down"> <%= post.get_downvotes.size%></span>
