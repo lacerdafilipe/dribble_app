@@ -49,32 +49,24 @@
 
   <br><br>
    <!-- Related Projects Row -->
-   <h3 class="my-4">Related Projects</h3>
+   <h3 class="my-4">Also, you may like...</h3>
 
-   <div class="row">
+   <div class="row random">
 
-     <div class="col-md-3 col-sm-6 mb-4">
-       <a href="#">
-         <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-       </a>
+     <div class="col">
+       <%= link_to (image_tag @random_post.image.url(:thumb)), post_path(@random_post)%>
+      <p>
+       <span class="fa fa-thumbs-o-up"> <%= @post.get_upvotes.size%></span>
+       <span class="fa fa-thumbs-o-down"> <%= @post.get_downvotes.size%></span>
+     </p>
      </div>
 
-     <div class="col-md-3 col-sm-6 mb-4">
-       <a href="#">
-         <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-       </a>
-     </div>
-
-     <div class="col-md-3 col-sm-6 mb-4">
-       <a href="#">
-         <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-       </a>
-     </div>
-
-     <div class="col-md-3 col-sm-6 mb-4">
-       <a href="#">
-         <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-       </a>
+     <div class="col">
+      <%= link_to (image_tag @random_post2.image.url(:thumb)), post_path(@random_post)%>
+      <p>
+       <span class="fa fa-thumbs-o-up"> <%= @post.get_upvotes.size%></span>
+       <span class="fa fa-thumbs-o-down"> <%= @post.get_downvotes.size%></span>
+     </p>
      </div>
 
    </div>

@@ -16,6 +16,8 @@ class PostsController < ApplicationController
 
   def show
     @coments = Coment.where(post_id: @post)
+    @random_post = Post.where.not(id: @post).order("RANDOM()").first
+    @random_post2 = Post.where.not(id: @post).order("RANDOM()").second
   end
 
   def create
