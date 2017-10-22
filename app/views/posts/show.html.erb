@@ -1,33 +1,84 @@
-<h1>Show Post</h1>
-<p><%= image_tag @post.image.url(:medium)%></p>
-<p><%= @post.title %></p>
-<p><%= @post.link %></p>
-<p><%= @post.description %></p>
-<strong><p>by <%= @post.user.name%></p></strong>
+<!-- Page Content -->
+ <div class="container">
 
-<% if user_signed_in? %>
+   <!-- Portfolio Item Row -->
+   <div class="row row-show">
 
-  <%= @post.get_upvotes.size%>
-  <%= link_to '<i class="fa fa-thumbs-o-up"></i>'.html_safe, like_post_path(@post), method: :get %> &nbsp
-  <%= @post.get_downvotes.size%>
-  <%= link_to '<i class="fa fa-thumbs-o-down"></i>'.html_safe, dislike_post_path(@post), method: :get %>
+     <div class="col-md-8">
+       <%= image_tag @post.image.url(:medium)%>
+       <hr>
+       <% if can? :update, @post %>
+         <%= link_to "Delete", @post, method: :delete,
+                                   :data => {confirm: "Are you sure?"}, :class=> "btn btn-outline-secondary"%>
+         <%= link_to "Edit", edit_post_path(@post), :class=> "btn btn-outline-secondary"%>
+       <%end%>
+     </div>
 
-<%else%>
-  <%=@post.get_upvotes.size %> <i class="fa fa-thumbs-o-up"></i>
-  <%= @post.get_downvotes.size%>&nbsp <i class="fa fa-thumbs-o-down"></i>
-<%end%>
+     <div class="col-md-4">
+       <h3 class="my-3"><%= @post.title %></h3>
+       <p class="align-show"><%= @post.description %></p>
+       <p>Shared by <strong><%= @post.user.name%></strong></p>
+        <% if user_signed_in?%>
 
-<h2><%=coment_count = pluralize(@post.coments.count, "Comments")%></h2><br>
-  <%@coments.each do |coment|%>
-      <p><strong><%= coment.user.name%>:</p>
-      <p></strong><%= coment.content%></p>
-  <%end%>
+         <%= @post.get_upvotes.size%>
+         <%= link_to '<i class="fa fa-thumbs-o-up"></i>'.html_safe, like_post_path(@post), method: :get %> &nbsp
+         <%= @post.get_downvotes.size%>
+         <%= link_to '<i class="fa fa-thumbs-o-down"></i>'.html_safe, dislike_post_path(@post), method: :get %>
+        <%else%>
+          <h5>
+           <%=@post.get_upvotes.size %>&nbsp <i class="fa fa-thumbs-o-up like"></i>
+           <%= @post.get_downvotes.size%>&nbsp <i class="fa fa-thumbs-o-down like"></i>
+         </h5>
+        <%end%>
+     </div>
 
-  <%= render 'coments/form' %>
+   </div>
+   <!-- /.row -->
+  <br>
+  <!-- Comments -->
+  <h2 class="comment_count"><%=coment_count = pluralize(@post.coments.count, "Comments")%></h2><br>
+    <%@coments.each do |coment|%>
+      <div class="comment">
+        <p class="username"><strong><%= coment.user.name%>:</p>
+        <p class="content"></strong><%= coment.content%></p>
+        <hr>
+      </div>
+    <%end%>
 
-<% if can? :update, @post %>
-  <p><%= link_to "Delete", @post, method: :delete,
-                            :data => {confirm: "Are you sure?"}%>
-      | <%= link_to "Edit", edit_post_path(@post)%>
-  </p>
-<%end%>
+    <%= render 'coments/form' %>
+
+  <br><br>
+   <!-- Related Projects Row -->
+   <h3 class="my-4">Related Projects</h3>
+
+   <div class="row">
+
+     <div class="col-md-3 col-sm-6 mb-4">
+       <a href="#">
+         <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+       </a>
+     </div>
+
+     <div class="col-md-3 col-sm-6 mb-4">
+       <a href="#">
+         <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+       </a>
+     </div>
+
+     <div class="col-md-3 col-sm-6 mb-4">
+       <a href="#">
+         <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+       </a>
+     </div>
+
+     <div class="col-md-3 col-sm-6 mb-4">
+       <a href="#">
+         <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+       </a>
+     </div>
+
+   </div>
+   <!-- /.row -->
+
+ </div>
+ <!-- /.container -->

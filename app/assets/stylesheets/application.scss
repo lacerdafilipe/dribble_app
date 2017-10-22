@@ -14,6 +14,7 @@
  *= require_self
  */
 
+
 .nav-item {
   padding-left: 30px;
 }
@@ -53,6 +54,21 @@ h1, h2, h3, h4, h5, h6 {
 i {
   color: #000;
   width: 1.5em;
+}
+
+.jumbotron {
+    text-align: center;
+}
+
+.like {
+  color: #000;
+}
+p.align-show {
+  text-align: justify;
+}
+
+.row-show {
+  padding-top: 100px;
 }
 
 @import 'home.scss';
